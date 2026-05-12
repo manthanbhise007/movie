@@ -49,7 +49,7 @@ class DataTransformation:
             logging.info("All required columns are present")
             movies["tags"] = movies["tags"].apply(self.stem_text)
             cv = CountVectorizer(max_features=5000,stop_words="english")
-            vectors = cv.fit_transform(movies["tags"]).toarray()
+            vectors = cv.fit_transform(movies["tags"])
             os.makedirs("artifacts", exist_ok=True)
             save_objects(obj=cv,file_path=self.data_transformation_config.vectorizer_path)
             save_objects(obj=vectors,file_path=self.data_transformation_config.vectors_path)
